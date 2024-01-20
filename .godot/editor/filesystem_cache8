@@ -1,0 +1,10 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1705765546
+icon.svg::CompressedTexture2D::7280386870980049968::1705763441::1705763445::1::::<><>::
+::res://assets/::1705764882
+tileset.png::CompressedTexture2D::942506274851587306::1705764880::1705764882::1::::<><>::
+::res://scenes/::1705765542
+level_1.tscn::PackedScene::9145067440249350624::1705765542::0::1::::<><>::uid://nos68ndwtop3::::res://assets/tileset.png<>uid://j5ns274n68cs::::res://scenes/playah.tscn
+playah.tscn::PackedScene::694453859460788418::1705765542::0::1::::<><>::res://scripts/playah.gd
+::res://scripts/::1705765527
+playah.gd::GDScript::-1::1705765527::0::1::::<>CharacterBody2D<>::

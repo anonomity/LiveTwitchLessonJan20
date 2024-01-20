@@ -1,0 +1,5 @@
+res://scenes/level_1.tscn
+res://scripts/playah.gd
+res://scenes/playah.tscn
+res://scenes/enemy.tscn
+res://scripts/enemy.gd

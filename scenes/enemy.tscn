@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://gcrrjv5e7161"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_e0j7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kil5"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqme"]
+size = Vector2(18, 18)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gee4k"]
+bg_color = Color(0.6, 0.0627451, 0.0470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wly8y"]
+bg_color = Color(0.0431373, 0.6, 0, 1)
+
+[node name="enemy" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_e0j7q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 0.227451, 0.890196, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1kil5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_ifqme")
+
+[node name="health_bar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 21.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gee4k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wly8y")
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

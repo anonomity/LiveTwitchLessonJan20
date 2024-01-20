@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://j5ns274n68cs"]
+
+[ext_resource type="Script" path="res://scripts/playah.gd" id="1_qxolm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oflg"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_4real"]
+resource_name = "swing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("swing_area:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("swing_area/sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.980875, 1.1205, 0.010472]
+}
+
+[sub_resource type="Animation" id="Animation_syr2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("swing_area:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("swing_area/sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0383972]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oj34w"]
+_data = {
+"RESET": SubResource("Animation_syr2s"),
+"swing": SubResource("Animation_4real")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1bxo"]
+radius = 8.0
+
+[node name="playah" type="CharacterBody2D"]
+script = ExtResource("1_qxolm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0.109804, 1, 0.172549, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2oflg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oj34w")
+}
+
+[node name="swing_area" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swing_area"]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_h1bxo")
+
+[node name="sword" type="ColorRect" parent="swing_area"]
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 22.0
+offset_bottom = 1.0
+rotation = -0.0383972
+color = Color(0.94902, 0.984314, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="swing_area" to="." method="_on_swing_area_area_entered"]

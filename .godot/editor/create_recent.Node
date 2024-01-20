@@ -1,0 +1,11 @@
+CollisionShape2D
+ProgressBar
+Area2D
+AnimationPlayer
+ColorRect
+NavigationRegion2D
+Timer
+NavigationAgent2D
+CharacterBody2D
+Camera2D
+TileMap
